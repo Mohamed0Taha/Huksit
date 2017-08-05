@@ -36,10 +36,10 @@
    }
 
 
- 
 
 
- 
+
+
 
   </style>
   </head>
@@ -65,14 +65,14 @@
      <div class="card">
        <img src="{{ asset('uploads/' . $salon->image) }}">
         <div class="container">
-         <h4><b>{{$salon->name}}</b></h4> 
-         <p>{{$salon->discription}}</p> 
+         <h4><b>{{$salon->name}}</b></h4>
+         <p>{{$salon->discription}}</p>
         </div>
 
        </div>
       @endforeach
     </div>
-  
- 
+
+
   </body>
 </html>
