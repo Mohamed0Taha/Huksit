@@ -38,47 +38,34 @@
 
    a {
     text-decoration: none;}
+     
+
+ 
 
 
-
-
-
-
+ 
 
   </style>
   </head>
   <body>
-  <div class="nav-container">
-        <div class="nav">
-            @if (Route::has('login'))
-                <div class="links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-      </div>
-</div>
 
 
+   
     <div class="card-container">
-     @foreach ($salons as $salon)
+     
      <div class="card">
-     <a href="{{ URL::to('/show/' . $salon->id) }}">
-       <img src="{{ asset('uploads/' . $salon->image) }}">
+     
+       <img src="{{ asset('uploads/' . $salon[0]->image) }}">
         <div class="container">
-         <h4><b>{{$salon->name}}</b></h4>
-         <p>{{$salon->discription}}</p>
+         <h4><b>{{$salon[0]->name}}</b></h4> 
+         <p>{{$salon[0]->discription}}</p> 
         </div>
 
-
+       
        </a></div>
-      @endforeach
+     
     </div>
-
-
+  
+ 
   </body>
 </html>

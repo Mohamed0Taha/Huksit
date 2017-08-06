@@ -62,7 +62,7 @@
       <div class="content">
         
         <h1>File Upload</h1>
-        <form action="{{ route('salon.store') }}" method="post" enctype="multipart/form-data">
+        <form action="/salon_create" method="post" enctype="multipart/form-data">
           <label>Create your salon page:</label>
            First name:<br> 
            <input type="text" name="name" value="Your salon's name"> <br> Lastname:<br>

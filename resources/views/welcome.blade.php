@@ -67,7 +67,7 @@
     <div class="card-container">
      @foreach ($salons as $salon)
      <div class="card">
-     <a href="https://stackoverflow.com/questions/796087/make-a-div-into-a-link">
+     <a href="{{ URL::to('/show/' . $salon->id) }}">
        <img src="{{ asset('uploads/' . $salon->image) }}">
         <div class="container">
          <h4><b>{{$salon->name}}</b></h4> 

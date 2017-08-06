@@ -10,18 +10,14 @@ use App\salon;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-	$salons=Salon::all();
- return view('welcome',compact('salons'));
-});
-
-Route::get('/new', function () {
-	
- return view('create_salon');
-})->middleware('auth');
-
 Auth::routes();
 
+Route::get('/', 'salonController@index');
+Route::get('/show/{id}', 'salonController@show');
+
+Route::get('/salon_create', 'salonController@create');
+
+Route::post('/salon_create', 'salonController@store');
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/new', 'salonController@store')->name('salon.store');
+
