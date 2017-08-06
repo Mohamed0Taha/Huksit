@@ -6,7 +6,7 @@
   <style type="text/css">
   .card{
    /* Add shadows to create the "card" effect */
-   width: 200px;
+   width: 240px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: white;
     transition: 0.3s;
@@ -30,11 +30,15 @@
   .card-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     background-color: #DCE6EE;
     padding: 4%;
     margin: 4%;
    }
 
+   a {
+    text-decoration: none;}
+     
 
  
 
@@ -63,13 +67,15 @@
     <div class="card-container">
      @foreach ($salons as $salon)
      <div class="card">
+     <a href="https://stackoverflow.com/questions/796087/make-a-div-into-a-link">
        <img src="{{ asset('uploads/' . $salon->image) }}">
         <div class="container">
          <h4><b>{{$salon->name}}</b></h4> 
          <p>{{$salon->discription}}</p> 
         </div>
 
-       </div>
+       
+       </a></div>
       @endforeach
     </div>
   
