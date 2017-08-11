@@ -4,41 +4,30 @@
     <meta charset="UTF-8">
     <title>title</title>
   <style type="text/css">
-  .card{
-   /* Add shadows to create the "card" effect */
-   width: 240px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: white;
-    transition: 0.3s;
-    margin: 2%;
-
-  }
-  .card img{
-    width: 100%;
-  }
-
-/* On mouse-over, add a deeper shadow */
-  .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(239, 203, 240, 1);
-  }
+  
 
   /* Add some padding inside the card container */
-  .container {
-      padding: 2px 16px;
+  .container { margin-left: 5%;
+     
   }
 
   .card-container{
     display: flex;
+
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     background-color: #DCE6EE;
-    padding: 4%;
+    
     margin: 4%;
    }
 
    a {
     text-decoration: none;}
      
+.card-container img {
+    width: 50%;
+    height: 40%;
+   }
 
  
 
@@ -53,7 +42,7 @@
    
     <div class="card-container">
      
-     <div class="card">
+     
      
        <img src="{{ asset('uploads/' . $salon[0]->image) }}">
         <div class="container">
@@ -62,7 +51,7 @@
         </div>
 
        
-       </a></div>
+       
      
     </div>
   

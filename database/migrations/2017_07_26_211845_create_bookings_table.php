@@ -18,7 +18,9 @@ class CreateBookingsTable extends Migration
             $table->timestamps();
             $table->integer('service_id');
             $table->integer('user_id');
-            $table->dateTimeTz('exec_time');
+            $table->string('exec_time', 100);
+            $table->date('exec_date');
+
         });
     }
 

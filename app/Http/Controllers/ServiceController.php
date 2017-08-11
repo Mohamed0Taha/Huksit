@@ -82,4 +82,16 @@ class ServiceController extends Controller
     {
         //
     }
+
+     public function ajax_url(service $id)
+    {
+       $service=Service::find(1);
+
+
+       return response()->json([
+                    'STATUS'=> true,
+                    'MESSAGE'=>'record found',
+                    'DATA' => $service
+            ], 200); 
+    }
 }

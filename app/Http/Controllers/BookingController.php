@@ -82,4 +82,21 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function ajax_url( $service_id, $exec_time) {
+        $bookings = Booking::where([
+    ['service_id', '=',  $service_id],
+    ['exec_time', '=',$exec_time ]]);
+
+        return response()->json([
+                'STATUS'  => true,
+                'MESSAGE' => 'record found',
+                'DATA'    => $bookings
+            ], 200);
+
+
+       
+
+    }
 }
+
