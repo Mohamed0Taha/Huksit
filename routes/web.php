@@ -20,7 +20,7 @@ Route::get('/salon_create', 'salonController@create');
 Route::post('/salon_create', 'salonController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/ajax_url/{service_id}/{exec_time}', 'BookingController@ajax_url');
+Route::get('/ajax_url/{service_id}/{exec_date}', 'BookingController@ajax_url');
 
 Route::get('/test', function () {
 

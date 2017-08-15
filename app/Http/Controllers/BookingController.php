@@ -83,20 +83,58 @@ class BookingController extends Controller
         //
     }
 
-    public function ajax_url( $service_id, $exec_time) {
-        $bookings = Booking::where([
-    ['service_id', '=',  $service_id],
-    ['exec_time', '=',$exec_time ]]);
+   public function ajax_url($service_id, $exec_date) {
+        $bookings = Booking::where('service_id', $service_id)
+        ->where('exec_date', $exec_date)->get();
+        $removeableBooking=array();
+        $removeableTotal=array();
+        $booked=array();
+        $available_labled=array();
 
-        return response()->json([
-                'STATUS'  => true,
-                'MESSAGE' => 'record found',
-                'DATA'    => $bookings
-            ], 200);
+         foreach ($bookings as $booking) {
+           $obj = new \stdClass();
+           $obj->label="booked";
+           $obj->data=$booking->exec_time;
+           $obj->rank= substr($booking->exec_time, 0, -3);
+            array_push($booked,$obj);
+        }
+
+      
+
+         foreach ($bookings as $booking) {
+           
+           array_push($removeableBooking,$booking->exec_time);
+       }
+
+
+        for ($x = 0; $x <= 24; $x++) {
+            array_push($removeableTotal,$x.':00');
+            } 
+        
+        $available = array_diff($removeableTotal, $removeableBooking);
+
+         foreach ($available as $time) {
+           $obj = new \stdClass();
+           $obj->label="available";
+           $obj->data=$time;
+            $obj->rank= substr($time, 0, -3);
+
+           array_push($available_labled,$obj);
+
+          
+        }
+
 
 
        
+       $total = array_merge($booked, $available_labled);
 
-    }
+
+
+
+
+       return $total;
+
+        }
 }
 
