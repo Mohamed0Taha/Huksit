@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Jcf\Geocode\GeocodeServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*

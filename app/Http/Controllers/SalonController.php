@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\salon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Jcf\Geocode\Geocode;
 
 class SalonController extends Controller
 {
@@ -21,8 +22,16 @@ class SalonController extends Controller
     }
     public function index()
     {
+        $circle_radius = 3959;
+        $miles = 20;
+        $latitude= '60.4834005';
+        $longitude = '22.117078';
 
-        $salons=Salon::all();
+        $salons =Salon::select('*')->whereRaw("latitude between($latitude - ($miles*0.018)) and ($latitude + ($miles*0.018))")
+        ->whereRaw("longitude between($longitude - ($miles*0.018)) and ($longitude + ($miles*0.018))")->get();
+        
+             
+      
 
         return view('welcome',compact('salons'));
     }
@@ -58,14 +67,20 @@ class SalonController extends Controller
             $image_new_name= $prefix.$file->getClientOriginalName();
             rename('uploads/'.$image_old_name, 'uploads/'.$image_new_name);
 
+            $response = Geocode::make()->address('kastarikatu 1D,Turku');
 
-           $image= $image_new_name;
+            if ($response) {
            $salon = new Salon;
+           $salon->address='fake address';
+           $salon->latitude=$response->latitude();
+           $salon->longitude=$response->longitude();
+           $image= $image_new_name;
            $salon->name=$request->input('name');
            $salon->discription=$request->input('discription');
            $salon->image=$image;
            $salon->user_id=Auth::id();
            $salon->save();
+       }
           
     }
 
@@ -79,9 +94,10 @@ class SalonController extends Controller
      * @param  \App\salon  $salon
      * @return \Illuminate\Http\Response
      */
-    public function show(salon $id)
+    public function show(Salon $id)
     {
-        $salon=Salon::find($id);
+        $salon=Salon::find($id)->first();
+    
         
         return view('salon_show')->with('salon', $salon);
 

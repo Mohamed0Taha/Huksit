@@ -44,10 +44,10 @@
      
      
      
-       <img src="{{ asset('uploads/' . $salon[0]->image) }}">
+       <img src="{{ asset('uploads/' . $salon->image) }}">
         <div class="container">
-         <h4><b>{{$salon[0]->name}}</b></h4> 
-         <p>{{$salon[0]->discription}}</p> 
+         <h4><b>{{$salon->name}}</b></h4> 
+         <p>{{$salon->discription}}</p> 
         </div>
 
        

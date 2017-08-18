@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salon extends Model
 {
-	protected $fillable = [ 'user_id', 'name', 'discription', 'image' ];
+	protected $fillable = [ 'user_id', 'name', 'discription', 'image'];
     //
 public function  user(){
 
@@ -16,5 +16,7 @@ public function  user(){
 public function service (){
         return $this->hasMany(Service::class);
     }
+
+    
 
 }

@@ -1,28 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSalonsTable extends Migration
-{
+class CreateSalonsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('salons', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('name', 30);
-            $table->string('image', 50);
-            $table->text('discription');
-            $table->integer('user_id');
-            
+                $table->increments('id');
+                $table->timestamps();
+                $table->string('name', 30);
+                $table->string('image', 50);
+                $table->string('address', 50);
+                $table->text('discription');
+                $table->integer('user_id');
+                $table->decimal('longitude', 10, 7);
+                $table->decimal('latitude', 10, 7);
 
-        });
+            });
     }
 
     /**
@@ -30,8 +30,7 @@ class CreateSalonsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('salons');
     }
 }
