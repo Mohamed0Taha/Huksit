@@ -18,8 +18,9 @@ class CreateServicesTable extends Migration {
 				$table->string('title');
 				$table->integer('price');
 				$table->integer('salon_id');
-				$table->integer('av_from');
-				$table->integer('av_to');
+				$table->string('av_from');
+				$table->string('av_to');
+
 			});
 	}
 

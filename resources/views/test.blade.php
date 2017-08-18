@@ -61,7 +61,7 @@ function setDate(e) {
 
     }
   };
-  xhttp.open("GET", "/ajax_url/33/"+selectedDate, true);
+  xhttp.open("GET", "/ajax_url/1/"+selectedDate, true);
   xhttp.send();
 }
 $("#selector").on('change', function(){

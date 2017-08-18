@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\booking;
+use App\service;
 use Illuminate\Http\Request;
-
 class BookingController extends Controller
 {
     /**
@@ -16,7 +14,6 @@ class BookingController extends Controller
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +23,6 @@ class BookingController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +33,6 @@ class BookingController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -48,7 +43,6 @@ class BookingController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,7 +53,6 @@ class BookingController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -71,7 +64,6 @@ class BookingController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -82,15 +74,18 @@ class BookingController extends Controller
     {
         //
     }
-
    public function ajax_url($service_id, $exec_date) {
         $bookings = Booking::where('service_id', $service_id)
         ->where('exec_date', $exec_date)->get();
+         $service = Service::where('id', $service_id)->first();
+         $from=(int)$service->av_from;
+         $to=(int)$service->av_to;
+        
+
         $removeableBooking=array();
         $removeableTotal=array();
         $booked=array();
         $available_labled=array();
-
          foreach ($bookings as $booking) {
            $obj = new \stdClass();
            $obj->label="booked";
@@ -98,43 +93,28 @@ class BookingController extends Controller
            $obj->rank= substr($booking->exec_time, 0, -3);
             array_push($booked,$obj);
         }
-
       
-
          foreach ($bookings as $booking) {
            
            array_push($removeableBooking,$booking->exec_time);
        }
 
-
-        for ($x = 0; $x <= 24; $x++) {
+     
+        for ($x = $from; $x < $to; $x++) {
             array_push($removeableTotal,$x.':00');
-            } 
+            }
         
         $available = array_diff($removeableTotal, $removeableBooking);
-
          foreach ($available as $time) {
            $obj = new \stdClass();
            $obj->label="available";
            $obj->data=$time;
             $obj->rank= substr($time, 0, -3);
-
            array_push($available_labled,$obj);
-
           
         }
-
-
-
        
        $total = array_merge($booked, $available_labled);
-
-
-
-
-
        return $total;
-
         }
 }
-

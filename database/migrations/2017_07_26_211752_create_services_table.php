@@ -20,6 +20,8 @@ class CreateServicesTable extends Migration
                $table->string('title');
                 $table->integer('price');
                 $table->integer('salon_id');
+                 $table->string('av_from');
+                   $table->string('av_to');
                  
 
         });
