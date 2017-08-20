@@ -1,78 +1,53 @@
 <html>
   <head>
-    <title>Laravel</title>
+    <title>Huksit</title>
     
-    <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        color: #B0BEC5;
-        display: table;
-        font-weight: 100;
-        font-family: 'Lato';
-      }
 
-      .container {
-        text-align: center;
-        display: table-cell;
-        vertical-align: middle;
-      }
+  body {
+    margin: 0;
+    padding: 0;
+    text-align: center; /* !!! */
+}
 
-      .content {
-        text-align: center;
-        display: inline-block;
-      }
-
-      .title {
-        font-size: 96px;
-        margin-bottom: 40px;
-      }
-
-      .quote {
-        font-size: 24px;
-      }
-
-      label{
-        margin-right:20px;
-      }
-
-      form{
-        background:#f5f5f5;
-        padding:20px;
-        border-radius:10px;
-      }
-
-      input[type="submit"]{
-        background:#0098cb;
-        border:0px;
-        border-radius:5px;
-        color:#fff;
-        padding:10px;
-        margin:20px auto;
-      }
+ .content { display: block;
+    margin: auto;
+    width: 40%;
+  }
 
     </style>
+
   </head>
   <body>
     <div class="container">
       <div class="content">
         
-        <h1>File Upload</h1>
+       
         <form action="/salon_create" method="post" enctype="multipart/form-data">
-          <label>Create your salon page:</label>
-           First name:<br> 
-           <input type="text" name="name" value="Your salon's name"> <br> Lastname:<br>
-            <input type="text" name="discription" value="write a short discription"> <br>
-            <br> <input type="file" name="file" id="file">
-            <input type="submit" value="Upload" name="submit">
+          <label>Create your salon page:</label><br> 
+         
+           <input id ="name" type="text" name="name" value="Your salon's name" class="form-member" required="true"><br><br>  
+            <textarea id='discription' rows="4" cols="25" name="discription"  class="form-member" maxlength="200" required="true">Discription here...</textarea><br><span id='remainingC'></span><br> 
+             <input type="text" name="address"  value ="Address" required="true"><br><br> 
+             <input  type="file" name="file" id="file"  class="btn btn-primary " required="true"><br> 
+            <input type="submit"  class="btn btn-primary value="Upload" name="submit"><br> 
           <input type="hidden" value="{{ csrf_token() }}" name="_token">
         </form>
 
       </div>
     </div>
   </body>
+      <script> 
+
+$('#discription').keypress(function(){
+
+    if(this.value.length > 160){
+        return false;
+    }
+    $("#remainingC").html("Remaining characters : " +(160 - this.value.length));
+});
+</script>
 </html>

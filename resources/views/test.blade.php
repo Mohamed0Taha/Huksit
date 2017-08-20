@@ -29,9 +29,7 @@
 
 
 <script>
-$( document ).ready(function() {
-   
-});
+
 
 function setDate(e) {
   var xhttp = new XMLHttpRequest();
