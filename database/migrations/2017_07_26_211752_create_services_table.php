@@ -18,10 +18,11 @@ class CreateServicesTable extends Migration
              $table->timestamps();
               $table->text('discription');
                $table->string('title');
-                $table->integer('price');
-                $table->integer('salon_id');
-                 $table->string('av_from');
-                   $table->string('av_to');
+                $table->string('image');
+                 $table->integer('price');
+                  $table->integer('salon_id');
+                   $table->string('av_from');
+                    $table->string('av_to');
                  
 
         });

@@ -22,7 +22,7 @@ class SalonController extends Controller
     }
     public function index()
     {
-        $circle_radius = 3959;
+      
         $miles = 20;
         $latitude= '60.4834005';
         $longitude = '22.117078';
@@ -67,20 +67,17 @@ class SalonController extends Controller
             $image_new_name= $prefix.$file->getClientOriginalName();
             rename('uploads/'.$image_old_name, 'uploads/'.$image_new_name);
 
-            $response = Geocode::make()->address($request->input('address'));
+         
 
-            if ($response) {
            $salon = new Salon;
-           $salon->address=$response->formattedAddress();
-           $salon->latitude=$response->latitude();
-           $salon->longitude=$response->longitude();
+           $salon->address=$request->input('address');
            $image= $image_new_name;
            $salon->name=$request->input('name');
            $salon->discription=$request->input('discription');
            $salon->image=$image;
            $salon->user_id=Auth::id();
            $salon->save();
-       }
+       
           
     }
 

@@ -49,5 +49,6 @@ $('#discription').keypress(function(){
     }
     $("#remainingC").html("Remaining characters : " +(160 - this.value.length));
 });
+
 </script>
 </html>

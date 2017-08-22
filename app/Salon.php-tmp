@@ -3,9 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Jcf\Geocode\Geocode;
 
 class Salon extends Model {
 	protected $fillable = ['user_id', 'name', 'discription', 'image'];
+
+	public function setAddressAttribute($address) {
+		$response = Geocode::make()->address($address);
+
+		if ($response) {
+			$this->attributes['address']   = $response->formattedAddress();
+			$this->attributes['longitude'] = $response->longitude();
+			$this->attributes['latitude']  = $response->latitude();
+
+		}
+
+	}
+
 	//
 	public function user() {
 
