@@ -33,9 +33,30 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+      public function store(Request $request)
     {
-        //
+       if ($request->hasFile('file')) { 
+
+            echo 'Uploaded';
+            $file = $request->file('file');
+            $image_old_name=$file->getClientOriginalName();
+            $file->move('uploads', $image_old_name);
+            $prefix = preg_replace('/\s+/', '', $request->input('name'));
+            $image_new_name= $prefix.$file->getClientOriginalName();
+            rename('uploads/'.$image_old_name, 'uploads/'.$image_new_name);
+
+         
+
+           $service = new Service;
+           $image= $image_new_name;
+           $Service->name=$request->input('name');
+           $Servicen->discription=$request->input('discription');
+           $Servicen->discription=$request->input('price');
+           $Service->image=$image;
+           $service->salon_id=$salon_id;
+           $Service->save();
+       
+          
     }
 
     /**
@@ -44,9 +65,12 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(service $service)
+    public function show(service $id)
     {
-        //
+        $service=Service::find($id)->first();
+    
+        
+        return view('service_show')->with('service', $service);
     }
 
     /**

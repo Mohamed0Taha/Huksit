@@ -14,10 +14,11 @@ Auth::routes();
 
 Route::get('/', 'salonController@index');
 Route::get('/show/{id}', 'salonController@show');
+Route::get('/service/{id}', 'serviceController@show');
 
 Route::get('/salon_create', 'salonController@create');
 
-Route::post('/salon_create', 'salonController@store');
+Route::post('/service_create', 'serviceController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ajax_url/{service_id}/{exec_date}', 'BookingController@ajax_url');

@@ -23,11 +23,3 @@ window.Vue = require('vue');
    
     }
 });
- import vPikaday from 'vue-pikaday'
-Vue.use(vPikaday)
-
-  new Vue({
-   data () {
-     return { date: null }
-   }
-});
