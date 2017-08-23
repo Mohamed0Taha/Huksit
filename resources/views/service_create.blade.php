@@ -29,12 +29,14 @@
         <form action="/service_create" method="post" enctype="multipart/form-data">
           <label>Create your service:</label><br> 
          
-           <input id ="name" type="text" name="name" value="Your salon's name" class="form-member" required="true"><br><br>  
+           <input id ="name" type="text" name="title" value="Your service's name" class="form-member" required="true"><br><br>  
+           <input id ="price" type="text" name="price"  class="form-member" required="true"><br><br> 
             <textarea id='discription' rows="4" cols="25" name="discription"  class="form-member" maxlength="200" required="true">Discription here...</textarea><br><span id='remainingC'></span><br> 
              
              <input  type="file" name="file" id="file"  class="btn btn-primary " required="true"><br> 
             <input type="submit"  class="btn btn-primary value="Upload" name="submit"><br> 
           <input type="hidden" value="{{ csrf_token() }}" name="_token">
+          <input type="hidden" value="{{ 1 }}" name="id">
         </form>
 
       </div>

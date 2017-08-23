@@ -24,7 +24,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+          return view('service_create');
     }
 
     /**
@@ -47,18 +47,18 @@ class ServiceController extends Controller
 
          
 
-           $service = new Service;
+       $service = new Service;
            $image= $image_new_name;
-           $Service->name=$request->input('name');
-           $Servicen->discription=$request->input('discription');
-           $Servicen->discription=$request->input('price');
-           $Service->image=$image;
-           $service->salon_id=$salon_id;
-           $Service->save();
+           $service->title=$request->input('title');
+           $service->discription=$request->input('discription');
+           $service->discription=$request->input('price');
+           $service->image=$image;
+           $service->salon_id= $request->input('id');
+           $service->save();
        
           
     }
-
+  }
     /**
      * Display the specified resource.
      *
@@ -107,15 +107,5 @@ class ServiceController extends Controller
         //
     }
 
-     public function ajax_url(service $id)
-    {
-       $service=Service::find(1);
-
-
-       return response()->json([
-                    'STATUS'=> true,
-                    'MESSAGE'=>'record found',
-                    'DATA' => $service
-            ], 200); 
-    }
+   
 }

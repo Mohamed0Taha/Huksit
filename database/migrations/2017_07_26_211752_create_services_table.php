@@ -19,10 +19,10 @@ class CreateServicesTable extends Migration
               $table->text('discription');
                $table->string('title');
                 $table->string('image');
-                 $table->integer('price');
+                 $table->integer('price')->default('0.0');
                   $table->integer('salon_id');
-                   $table->string('av_from');
-                    $table->string('av_to');
+                   $table->string('av_from')->default('8:00');
+                    $table->string('av_to')->default('17:00');
                  
 
         });
