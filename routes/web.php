@@ -17,6 +17,7 @@ Route::get('/show/{id}', 'salonController@show');
 Route::get('/service/{id}', 'serviceController@show');
 
 Route::get('/salon_create', 'salonController@create');
+Route::post('/salon_create', 'salonController@store');
 Route::get('/service_create', 'serviceController@create');
 
 Route::post('/service_create', 'serviceController@store');

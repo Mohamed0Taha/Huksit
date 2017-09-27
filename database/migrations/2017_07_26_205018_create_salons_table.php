@@ -15,8 +15,8 @@ class CreateSalonsTable extends Migration {
                 $table->increments('id');
                 $table->timestamps();
                 $table->string('name', 30);
-                $table->string('image', 50);
-                $table->string('address', 50);
+                $table->text('image');
+                $table->string('address', 100);
                 $table->text('discription');
                 $table->integer('user_id');
                 $table->decimal('longitude', 10, 7);

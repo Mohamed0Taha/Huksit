@@ -1,54 +1,19 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Huksit</title>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
+<head><script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.1.3/uploadcare.full.min.js"></script>
+</head>
+<body>
 
-  body {
-    margin: 0;
-    padding: 0;
-    text-align: center; /* !!! */
-}
+<form action="/salon_create" method="post" >
+  name: <input type="text" name="name"><br>
+  discription: <input type="text" name="discription"><br>
+    address: <input id="geocomplete" type="text" placeholder="Type in an address" size="90" /><br>
+<input type="hidden" role="uploadcare-uploader" name="image" data-public-key="2162689122e7bc33c1cb" data-images-only  data-clearable="true" data-crop ="free" /><br>
+  <input type="hidden" value="{{ csrf_token() }}" name="_token">
+  <input type="submit" value="Submit">
+</form>
 
- .content { display: block;
-    margin: auto;
-    width: 40%;
-  }
 
-    </style>
 
-  </head>
-  <body>
-    <div class="container">
-      <div class="content">
-        
-       
-        <form action="/salon_create" method="post" enctype="multipart/form-data">
-          <label>Create your salon page:</label><br> 
-         
-           <input id ="name" type="text" name="name" value="Your salon's name" class="form-member" required="true"><br><br>  
-            <textarea id='discription' rows="4" cols="25" name="discription"  class="form-member" maxlength="200" required="true">Discription here...</textarea><br><span id='remainingC'></span><br> 
-             <input type="text" name="address"  value ="Address" required="true"><br><br> 
-             <input  type="file" name="file" id="file"  class="btn btn-primary " required="true"><br> 
-            <input type="submit"  class="btn btn-primary value="Upload" name="submit"><br> 
-          <input type="hidden" value="{{ csrf_token() }}" name="_token">
-        </form>
-
-      </div>
-    </div>
-  </body>
-      <script> 
-
-$('#discription').keypress(function(){
-
-    if(this.value.length > 160){
-        return false;
-    }
-    $("#remainingC").html("Remaining characters : " +(160 - this.value.length));
-});
-
-</script>
+</body>
 </html>

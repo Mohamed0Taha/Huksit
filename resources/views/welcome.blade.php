@@ -68,7 +68,7 @@
      @foreach ($salons as $salon)
      <div class="card">
      <a href="{{ URL::to('/show/' . $salon->id) }}">
-       <img src="{{ asset('uploads/' . $salon->image) }}">
+       <img src="{{$salon->image}}">
         <div class="container">
          <h4><b>{{$salon->name}}</b></h4> 
          <p>{{$salon->discription}}</p> 

@@ -56,34 +56,21 @@ class SalonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-       if ($request->hasFile('file')) { 
 
-            echo 'Uploaded';
-            $file = $request->file('file');
-            $image_old_name=$file->getClientOriginalName();
-            $file->move('uploads', $image_old_name);
-            $prefix = preg_replace('/\s+/', '', $request->input('name'));
-            $image_new_name= $prefix.$file->getClientOriginalName();
-            rename('uploads/'.$image_old_name, 'uploads/'.$image_new_name);
-
-         
-
+    {      
            $salon = new Salon;
            $salon->address=$request->input('address');
-           $image= $image_new_name;
            $salon->name=$request->input('name');
            $salon->discription=$request->input('discription');
-           $salon->image=$image;
+           $salon->image=$request->input('image');
            $salon->user_id=Auth::id();
            $salon->save();
+
+           echo "Salon created";
+           var_dump($request->input('image'));
        
           
-    }
-
-       
-
-    }
+ }
 
     /**
      * Display the specified resource.

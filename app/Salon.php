@@ -17,7 +17,7 @@ class Salon extends Model {
     	 $response = Geocode::make()->address($address);
 
     		  if ($response) {
-             $this->attributes['address'] =$response->formattedAddress();
+          var_dump($response->raw()->address_components[2]->long_name);
               $this->attributes['longitude'] = $response->longitude();
                $this->attributes['latitude'] = $response->latitude();
           
